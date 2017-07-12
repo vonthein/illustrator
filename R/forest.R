@@ -10,6 +10,34 @@
 #
 
 #
+#' Title
+#'
+#' @param ni trees per stand
+#' @param path gap between stands
+#' @param nrow number of rows of trees, if 0, uniformly random
+#' @param near factor to the distance between symbols
+#' @param icon symbol as a matrix
+#' @param sizeratio factor by which symbols in right stand are larger
+#' @param colri extreme colors of right stand
+#' @param colle extreme colors of left stand
+#' @param ... input to function lines()
+#'
+#' @return plot of two groups of symbols in rows and columns or uniformly distributed
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' Forest()
+#' Forest(ni=28,nrow=5,near=5)
+#' Forest(path=2,ni=50)
+#' Forest(ni=28,nrow=5,near=5,icon=bush)
+#' Forest(ni=15,nrow=5,near=-2,icon=wheat-3,path=11,
+#'        colle=c("yellow","gold"),colri=c("lightgreen","yellow"),col="brown")
+#' Forest(ni=12,nrow=4,near=-2,icon=0.8*bike,path=11,
+#'        colle=c("white","white"),colri=c("white","white"),col="blue",lwd=5)
+#' Forest(ni=15,nrow=5,near=-2,icon=arabidopsis/2.2,path=11,
+#'        colle=c("lightgreen","green"),colri=c("green","darkgreen"),col="darkgreen")
+#' }
 Forest <-function(ni = 30,        # trees per stand
  path = 5, nrow = 0, near = 3,    # closeness in row
  icon = fir, sizeratio = 1.4,     # right icons larger
