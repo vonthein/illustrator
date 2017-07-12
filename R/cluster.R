@@ -9,6 +9,8 @@
 #
 
 # Cluster
+#' @import base
+#' @import stats
 Cluster <- function(nij = 4,    # fish per age
  age   = c(2,1.4,1,0.7,0.5),    # fish sizes
  delta = 2,                     # standardized mean difference
