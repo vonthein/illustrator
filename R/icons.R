@@ -308,7 +308,7 @@ car <- rbind(matrix(c(-0.5,0.5, -0.3,1.5, 2.3,1.5, 2.5,0.5, 2.6,0.5, 2.4,1.6, -0
                       -0.6,-0.6, -0.4,-0.6, -0.4,-1, 0.4,-1, 0.4,-0.6, 1.6,-0.6, 1.6,-1, 2.4,-1, 2.4,-0.6, # wheels
                       2.6,-0.6, 2.6,0.5), # grill
                        ncol=2,byrow=TRUE),
-              cbind(0.7*loop[-38,1]+2,0.7*loop[-38,2]),0.7*loop[-38,],c(-0.6,0.5))  # lights
+              cbind(0.7*loop[-38,1]+2,0.7*loop[-38,2]),0.7*loop[-38,],c(-0.6,0.5), NA)  # lights
 Auto <- car; Pkw <- Auto
 # plot(car,type="l");polygon(car,col="orange")
 bulb <- matrix(c(3.5,0, 3,0.25, 3.5,0.5, 3,0.75, 3.5,1, 3,1.25, 3.5,1.5, 3,1.75,
@@ -346,8 +346,8 @@ offenes.Buch <- open.book
 icons <- list(Stern,Nadelbaum,Busch,Mensch,Mann,Frau,Familie,Familie2,Fahrrad,Schwein,
             Dorsch,Kaninchen,Knochen,Vase,Frucht,Ackerschmalwand,Petrischale,Maus,
             Muschel,Weizen,Zebrabärbling,Seestern,Ei,Blume,Fruchtfliege,Wurm,Hefe,
-            E.coli,Glühbirne,Haus,mill,9*mosque,9*KKW,3*car,alphadach,betadach,thetadach,
-            book,open.book,paper)
+            E.coli,Glühbirne,Haus,Fabrik,Moschee=9*mosque,KKW=9*KKW,Auto=3*car,alphadach,betadach,thetadach,
+            Buch,offenes.Buch,Papier)
 
 iconsD <- c("Stern","Nadelbaum","Busch","Mensch","Mann","Frau","Familie","Familie2","Fahrrad","Schwein",
             "Dorsch","Kaninchen","Knochen","Vase","Frucht","Ackerschmalwand","Petrischale","Maus",
