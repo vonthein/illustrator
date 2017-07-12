@@ -1,0 +1,22 @@
+Package: illustrator
+Type: Package
+Title: Symbol Plots
+Version: 0.1
+Date: 2016-09-13
+Author: Reinhard Vonthein
+Maintainer: Reinhard Vonthein <reinhard.vonthein@gmx.de>
+Description: Plots symbols that look like beeings or things in dotplots, scatterplots and the like to illustrate joint distributions, gradients, clusters, classes, two-factorial plans and GLMs. Many symbols are supplied, more can be included.
+License: CC BY-SA 4.0
+LazyData: TRUE
+Imports: mclust (>= 0.2),
+  shape (>= 1.4.2),
+  splines (>= 0.2),
+  stringr (>= 1.0.0),
+  survival (>= 0.2),
+  htmlwidgets, 
+  miniUI, 
+  shinyjs,
+  colourpicker,
+  shiny
+Depends: R (>= 3.2.3)
+RoxygenNote: 6.0.1
