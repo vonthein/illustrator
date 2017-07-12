@@ -10,6 +10,43 @@
 
 # GLM fuer Lokalisation, Farbe, Groesse, Rotation
 # Datenerzeugung
+#' Title
+#'
+#' @param n number of y values to generate
+#' @param link link function "id", "sqrt", "log", "logit", "cloglog"
+#' @param dist one of "normal", "poisson", "binomial"
+#' @param beta 6-vector of regression coefficients
+#' @param xes list describing all regressors as either number of levels or range of continuous uniform
+#' @param s sd if "normal", size if "binomial"
+#' @param seed for random number generator
+#'
+#' @return data.frame of y vector and X matrix
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' plotglm(icon=E.coli,colo=c("gray","yellow"),col="darkgrey",
+#'  data = rglm(dist="poisson",xes=list(x1=c(10,170),x2=3,x3=9,x4=2)))
+#' # Regressoren bedeuten: x-Achse, Farbe, Größe, Drehung
+#' daten <- rglm(dist="poisson",
+#'               xes=list(x1=c(10,20),x2=2,x3=c(0.7,2.5),x4=c(-2,6)),
+#'               beta=c(1,0.5,2,.03,1,0.7))
+#' plotglm(icon=E.coli,colo=c("gray","green"),col="darkgrey",rot=10,
+#'         iex=.2, str=0.3, data = daten)
+#' daten <- rglm(n=12,dist="binomial",
+#'               xes=list(x1=c(7,14),x2=1,x3=1,x4=1),
+#'              beta=c(0,0.032,0,0,0,0))
+#' daten[,5] <- daten[,1]
+#' daten[,4] <- daten[,2]/10
+#' plotglm(icon=zebrafish,colo=c("n"),col="black",rot=pi,
+#'         iex=.04, str = 1.3, data = daten)
+#' est <- glm(y~x.x1,family='binomial',data=daten)
+#' new <- data.frame(x.x1=(1:200)/10)
+#' odd <- exp(predict(est,newdata=new))
+#' P <- odd/(1+odd)
+#' lines(new$x.x1,P)
+#' abline(v=-est$coefficients[1]/est$coefficients[2],h=c(0,0.5,1),lty=2)
+#' }
 rglm <- function(n = 36, # number of symbols to be drawn
 # formula = "~x1*x2",     # string describing the linear predictor
  link    = "id",         # link function "id", "sqrt", "log", "logit", "cloglog"
@@ -41,13 +78,47 @@ rglm <- function(n = 36, # number of symbols to be drawn
 }
 #daten <- rglm()
 # Plot
+#' Title
+#'
+#' @param icon symbol as a matrix
+#' @param iex iconsize scaling factor
+#' @param colo extreme colors
+#' @param rot rotation in degrees for every symbol
+#' @param str horizontal stretch factor applied to every symbol
+#' @param data dataframe of simulated data, e.g. by function rglm
+#' @param ... input to function lines()
+#'
+#' @return plots scatterplot
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' plotglm(data=rglm(s=3),str=0.5)
+#' plotglm(icon=E.coli,colo=c("gray","yellow"),col="darkgrey",
+#'    data = rglm(dist="poisson",xes=list(x1=c(10,170),x2=3,x3=9,x4=2)))
+#' # Regressoren bedeuten: x-Achse, Farbe, Größe, Drehung
+#' daten <- rglm(dist="poisson",
+#'                xes=list(x1=c(10,20),x2=2,x3=c(0.7,2.5),x4=c(-2,6)),
+#'               beta=c(1,0.5,2,.03,1,0.7))
+#' plotglm(icon=E.coli,colo=c("gray","green"),col="darkgrey",rot=10, iex=.2, str=0.3, data = daten)
+#' daten <- rglm(n=12,dist="binomial", xes=list(x1=c(7,14),x2=1,x3=1,x4=1), beta=c(0,0.032,0,0,0,0))
+#' daten[,5] <- daten[,1]
+#' daten[,4] <- daten[,2]/10
+#' plotglm(icon=zebrafish,colo=c("n"),col="black",rot=pi, iex=.04, str = 1.3, data = daten)
+#' est <- glm(y~x.x1,family='binomial',data=daten)
+#' new <- data.frame(x.x1=(1:200)/10)
+#' odd <- exp(predict(est,newdata=new))
+#' P <- odd/(1+odd)
+#' lines(new$x.x1,P)
+#' abline(v=-est$coefficients[1]/est$coefficients[2],h=c(0,0.5,1),lty=2)
+#' }
 plotglm <- function(
  icon = fir,     # icon matrix of coordinates
   iex = NULL,      # iconsize scaling factor
  colo = c("darkgreen","green"), # extremes of shadepalette
   rot = 0,         # rotation in degrees for every icon
   str = 1,         # horizontal stretch factor applied to every icon
- data,...){        # dataframe of simulated date, e.g. by function rglm
+ data,...){        # dataframe of simulated data, e.g. by function rglm
  #attach(data)      # columns define ordinate, abscissa, color, size, rotation
  n <- length(data[,1])# in that order
  oy <- order(data[,1],decreasing = TRUE)

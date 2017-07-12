@@ -1,4 +1,3 @@
-#setwd("~/Eigene Dokumente/1.Vorhaben/4.illustratoR")
 # library(shape)
 # library(splines)
 # library(survival)
@@ -52,13 +51,125 @@ blaugruen     <- rgb(0,115,115,240,,255)
 #' @param df degrees of freedom of t-distribution(s)
 #' @param kern kernel of density trace for dtr or violin
 #' @param sdsk smoothness parameter of density trace for dtr or violin
-#' @param ...
+#' @param ... parameters passed on to function plot()
 #'
-#' @return Prints tuning parameters binz ans space and returns histograms of y for values of x. Plots the specified plot.
+#' @return Prints tuning parameters binz and space and returns histograms of y for values of x. Plots the specified plot.
 #' @export
 #'
-#' @examples x <- rep(c(1:4),c(100,100,100,100)*.1); y <- x+rnorm(40,x/2)
-#'  battleship(y=y,x=x,dtr=FALSE,fill=TRUE,xprop=FALSE, ship=TRUE, dis="normal", plank=1, cline=TRUE, space=1.7, dot=TRUE, binz=13, icon=rabbit, fillcol=c("brown","gold","lightgray","white"))
+#' @examples
+#' \dontrun{
+#' x <- rep(c(1:4),c(100,100,100,100)*.1); y <- x+rnorm(40,x/2)
+#'  battleship(y=y,x=x,dtr=FALSE,fill=TRUE,xprop=FALSE,
+#'             ship=TRUE, dis="normal", plank=1, cline=TRUE,
+#'             space=1.7, dot=TRUE, binz=13, icon=rabbit,
+#'             fillcol=c("brown","gold","lightgray","white"))
+#'
+#' # Aesthetic Symbol
+#' # requires binz according to format
+#' x <- rep(c(1:6),c(50,50,50,50,50,50)*2);y <- rep((rnorm(100)),6)
+#' battleship(y=y,cens=0,x=x,binz=40,dtr=c(F,F,F,F,F,T),fill=T,xprop=F,
+#'            space=2.2,dis="normal",plank=0.5,
+#'            cline=c(F,T,F,F,F,F),clc="white",
+#'            box=c(F,T,F,F,F,F),
+#'            boxcol="black",
+#'            dot=c(T,T,T,F,T,F),icon="arabidopsis",# fast quadratisch
+#'            err=c(T,F,F,F,F,T),loc="mean",prec="2se",
+#'            errcol=c("black","red","orange","white","blue","brown"),
+#'            his=c(F,F,F,T,F,F),hiscol="darkgreen",
+#'            vio=c(F,F,T,F,F,F),#viocol="green",
+#'            ship=c(F,F,F,T,T,T),connect=matrix(c(1,2,5,6),2,2,F))
+#'
+#' x <- rep(c(1:2),c(150,50)*.6); y <- x+rnorm(80,x/2)
+#' battleship(y=y,x=x,dtr=FALSE,fill=TRUE,xprop=TRUE,
+#'            ship=TRUE, dis="normal", plank=3, cline=TRUE, space=1.2,
+#'            dot=TRUE, binz=c(11,23),
+#'            icon=list(man%*%diag(c(5,1)), woman))
+#'
+#' battleship(y=y, x=x, dtr=FALSE, fill=TRUE, xprop=FALSE,
+#'            ship=TRUE, dis="normal", plank=4, cline=TRUE, space=1.2,
+#'            dot=FALSE)
+#'
+#' x <- rep(c(1:3),c(50,50,50)*3);y <- rep((rnorm(150)),3)
+#' battleship(y=y,cens=0,x=x,binz=30,dtr=c(F,F,F),fill=T,xprop=F,
+#'            #fillcol="lightblue",elicol="blue",
+#'            space=3.3,dis="normal",plank=0.5,
+#'            cline=c(T,F,F),clc="white",
+#'            box=c(T,F,F),
+#'            boxcol="black",
+#'            dot=c(T,T,F),
+#'            err=c(F,F,T),loc="mean",prec="2se",
+#'            errcol=c("black","red","brown"),
+#'            his=c(T,F,F),hiscol="darkgreen",
+#'            vio=c(F,T,F),#viocol="green",
+#'            ship=c(F,F,T))
+#'
+#' # censored
+#' x <- rep(c(1),c(80)*1);y <- rep((rnorm(80)),1)
+#' cens <- rbinom(80,1,0.05)+(y>quantile(y,0.7))
+#' battleship(y=y,cens=cens,x=x,dot=TRUE,dtr=FALSE,space=2.25,
+#'            dis="normal",plank=1)
+#'
+#' # Confluence
+#' x <- rep(c(1,2,3),c(20,20,20)*1);y <- rep((rpois(20,5)),3)
+#' battleship(y=y,x=x,dot=TRUE,dtr=FALSE,space=1.25,
+#'            dis="poisson",confluence=c("Tufte","Tukey","Duerr"))
+#'
+#' # Graphem = violin plot or density trace residual
+#' x <- rep(c(1:2),c(50,50)*3);y <- rep((rnorm(150)),2)
+#' battleship(y=y,x=x,space=2,dis="normal",dot=F,quant=NA,
+#'  ship=T,vio=c(T,F),dtr=c(F,T))
+#'
+#' # Graphem = error bar
+#' y1 <- exp(rnorm(200,1,0.4));x1 <- rep(1,200)
+#' battleship(y=y1,x=x1,space=2,dis="lognormal",dot=F,
+#'  quant=NA,fill=T,ship=T,vio=T,dtr=T)
+#'
+#' # Graphem = discret probability function bar plot
+#' y2 <- rpois(30,5);x2 <- rep(2,30)
+#' battleship(y=y2,x=x2,space=2,dis="poisson",dots=T,
+#'  elicol="gray",fill=T,ship=T,shipcol="blue")
+#'
+#' # Graphem = connecting line
+#' x <- rep(c(1:5),10)
+#' y <- rbinom(50,size=20,prob=c(0.05,0.2,0.5,0.8,0.95))
+#' battleship(y=y,x=x,space=0.5,binz=30,dis="gamma",dot=T,
+#'  elicol="gray",fill=T,ship=F,err=T,loc="mean",prec="2se",
+#'  errcol="orange",connect=matrix(1:5,nrow=1),concol="black")
+#' battleship(y=y,x=x,dis="binomial",trials=rep(20,5),dot=F,ship=F,
+#'  err=F,loc="mean",prec="2se",errcol="orange",
+#'  connect=matrix(1:5,nrow=1),concol="black")
+#' battleship(y=y,cens=0,x=x,binz=89,dtr=F,fill=T,xprop=T,space=1.8,dot=T,ship=F)
+#'
+#' # Aestetic = distribution
+#' x <- rep(c(1:2),c(50,50)*3);y <- rep((rgamma(150,3)),2)
+#' battleship(y=y,x=x,space=1.5,binz=55,dis=c("normal","lognormal"),
+#'   dot=T,fill=T,elicol=c("darkgreen","darkgreen"),fillcol=c("green","green"),
+#'   quant=NA,ship=T,vio=c(F,F),dtr=T)
+#' battleship(y=y,x=x,space=1.5,binz=55,dot=T,
+#'   fill=T,elicol=c("gray","gray"),fillcol=c("lightgray","lightgray"),
+#'   quant=NA,ship=F,vio=T,dtr=T,sdsk=c(.2,.5))
+#'
+#' # Aesthetic = bin numbers
+#' battleship(y=y[1:150],x=x[1:150],space=2,binz=55,his=T,dot=F,
+#'   fill=T,elicol=c("darkgreen","darkgreen"),fillcol=c("green","green"),
+#'   quant=NA,ship=F,vio=c(F,F),dtr=T)
+#' battleship(y=y[1:150],x=x[1:150],space=2,binz=12,his=T,dot=F,
+#'   fill=T,elicol=c("darkgreen","darkgreen"),fillcol=c("green","green"),
+#'   quant=NA,ship=F,vio=c(F,F),dtr=T)
+#'
+#' # Mix of three genotypes
+#' # Proportions Mendel
+#' maf <- 0.1
+#' p <- maf^2
+#' pq <- 2*maf*(1-maf)
+#' q <- (1-maf)^2
+#' n <- 3000*c(q,pq,p)
+#' x <- rep((1:length(n)),n);y <- rnorm(sum(n),x)
+#' battleship(y=y,cens=0,x=x,dtr=F,fill=T,xprop=T,dot=T,ship=T,space=0.6)
+#' CasesControls <- rep(c(1,2),1500)
+#' battleship(y=y,cens=0,x=CasesControls,dis="mixnorm",genmix=T,mix=3,
+#'            dtr=F,fill=T,xprop=T,dot=T,ship=T,space=1.5)
+#' }
 battleship <- function(y, cens=0, x=1, dis="normal", xprop=T, space=1, his=NA, binz=0,
                        err=F, loc="none", prec="2sd", connect=F,
                        box=F, vio=F, dot=NA, icon="loop", fill=FALSE, ship=T, plank=2, dtr=F,

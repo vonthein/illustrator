@@ -8,9 +8,28 @@
 # specialized plot function
 #
 
-# Cluster
+#' Cluster
+#' @param nij symbols per size
+#'
+#' @param age vector of sizes, default c(2,1.4,1,0.7,0.5)
+#' @param delta standardized mean difference
+#' @param colo vector of extreme colors in both clusters, default c("blue","lightblue","darkgreen","green")
+#' @param icon symbol as a matrix
+#' @param seed for random number generator
+#' @param ...
+#'
 #' @import base
 #' @import stats
+#' @examples
+#' \dontrun{
+#' Cluster(delta=1.5)
+#' Cluster(7,c(1.41,1.3,1.21,1.13,1.06,1,0.95,0.91),1)
+#' Cluster(icon=5*fir)
+#' Cluster(icon=3*worm,colo=c("lightgrey","white","lightgray","cyan"))
+#' Cluster(icon=5*flower,colo=c("blue","lightblue","red","pink"))
+#' Cluster(7,c(1.41,1.3,1.21,1.13,1.06,1,0.95,0.91),2, icon=5*man,colo=c("blue","lightblue","red","white"))
+#' Cluster(icon=5*bike,colo="no",col="blue",lwd=3)
+#' }
 Cluster <- function(nij = 4,    # fish per age
  age   = c(2,1.4,1,0.7,0.5),    # fish sizes
  delta = 2,                     # standardized mean difference

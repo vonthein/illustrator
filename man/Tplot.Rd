@@ -55,13 +55,15 @@ Tplot
 }
 \examples{
 \dontrun{x <- matrix(1:3,3,1)
-rownames(x) <-c("eins","zwei","dreivierfünfsechssieben\\n achtneunzehnelfzwölf")
+rownames(x) <-c("one","two","threefourfivesixseven\\n eightnineteneleventwelve")
 Tplot(x,45,nc=50,ns=2)
-Tplot(x,nc=30,ns=2,icon=fir,icol="darkgreen",col="green",bcol="#FAFAFA", border="#EEEEEE",cut=TRUE,cex.axis=1.7,cex.lab=1.7)
+Tplot(x,nc=30,ns=2,icon=fir,icol="darkgreen",col="green",bcol="#FAFAFA",
+ border="#EEEEEE",cut=TRUE,cex.axis=1.7,cex.lab=1.7)
 Tplot(x,nc=30,ns=2,icon=cod[,c(2,1)],icol="blue",col="lightblue",border="white")
 Tplot(x,nc=30,ns=1.5,icon=human,icol="gray20",col="mistyrose",border="lavender")
 x <- matrix(c(3,4,9,17,57),ncol=1)
 rownames(x)<- c("Ziege","Schaf","Rind","Schwein","Huhn")
-Tplot(x,nc=5,ns=1,icon=bone[,c(2,1)],space=0.7,icol="grey50",bcol="grey90",border="grey80")
+Tplot(x,nc=5,ns=1,icon=bone[,c(2,1)],space=0.7,icol="grey50",
+      bcol="grey90",border="grey80")
 }
 }

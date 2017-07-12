@@ -12,6 +12,33 @@
 #
 
 # rxc-plan
+#' Title
+#'
+#' @param nij group size
+#' @param r rows
+#' @param c columns
+#' @param re row effect
+#' @param ce column effect
+#' @param ie interaction effect
+#' @param icon symbol as a matrix
+#' @param colo extremes of colors
+#' @param seed for random number generator
+#' @param ... input to function lines()
+#'
+#' @return plot of (r x c)-plan
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' plan()
+#' plan(4,3,2,0.5,2,3)
+#' plan(6,icon=cod*2.5)
+#' plan(6,,,icon=4*fir,colo="darkgreen")
+#' plan(6,,,icon=5*man,colo="darkgreen")
+#' plan(9,,,icon=2*arabidopsis,colo="green")
+#' plan(icon=4*zebrafish,colo="n",col="darkgrey")
+#' plan(9,r=2,c=3,re=0.1,ce=0.2,ie=0,icon=3*arabidopsis,colo=c("darkgreen","yellow"),col="green")
+#' }
 plan <- function(nij = 5, # group size
                  r  = 2, # rows
                  c  = 2, # cols
