@@ -16,7 +16,7 @@
 #' @param colo vector of extreme colors in both clusters, default c("blue","lightblue","darkgreen","green")
 #' @param icon symbol as a matrix
 #' @param seed for random number generator
-#' @param ...
+#' @param ... input to function lines
 #'
 #' @import base
 #' @import stats

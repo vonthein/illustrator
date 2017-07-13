@@ -21,7 +21,7 @@ Cluster(nij = 4, age = c(2, 1.4, 1, 0.7, 0.5), delta = 2,
 
 \item{seed}{for random number generator}
 
-\item{...}{}
+\item{...}{input to function lines}
 }
 \description{
 Cluster
