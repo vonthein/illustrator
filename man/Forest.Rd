@@ -6,7 +6,7 @@
 \usage{
 Forest(ni = 30, path = 5, nrow = 0, near = 3, icon = fir,
   sizeratio = 1.4, colri = c("green", "lightgreen"),
-  colle = c("darkgreen", "green"), ...)
+  colle = c("darkgreen", "green"), iex = 1, ip = 1, seed = 12345, ...)
 }
 \arguments{
 \item{ni}{trees per stand}
@@ -24,6 +24,12 @@ Forest(ni = 30, path = 5, nrow = 0, near = 3, icon = fir,
 \item{colri}{extreme colors of right stand}
 
 \item{colle}{extreme colors of left stand}
+
+\item{iex}{symbol expansion factor}
+
+\item{ip}{symbol height factor}
+
+\item{seed}{for random number generator}
 
 \item{...}{input to function lines()}
 }
