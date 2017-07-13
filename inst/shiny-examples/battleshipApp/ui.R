@@ -35,7 +35,7 @@ shinyUI(
                                          "2se" = "2se",
                                          "2sd" = "2sd"))
       ),
-      column(8,#"main",
+      column(7,#"main",
              #mainPanel(
              p("Dotplot, histograms, boxplots, violin plots, battleship plots, error bars"),
              fluidRow(
@@ -60,7 +60,7 @@ shinyUI(
              strong(textOutput("pdfSum"))
              #    ) # row
       ), # column
-      column(2,#"right",
+      column(3,#"right",
              colourpicker::colourInput("filcol1", "Fill color from", "lightblue"),
              colourpicker::colourInput("filcol2", "Fill color to", "#66F50A"),
              colourpicker::colourInput("elicol1", "Symbol color from", "blue"),

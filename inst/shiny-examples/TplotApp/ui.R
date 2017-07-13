@@ -26,7 +26,7 @@ shinyUI(
                          value = 1, min = 0, max = 2, step=0.01)
              #  )
       ),# column
-      column(8,
+      column(7,
              p("Tplot"),
              plotOutput("pdfPlot"),
 
@@ -46,7 +46,7 @@ shinyUI(
                column(5)
              ) # inner row
       ), # column
-      column(2,
+      column(3,
              colourpicker::colourInput("col", "Fill color", "lightblue"),
              colourpicker::colourInput("icol", "Symbol color", "grey50"),
              colourpicker::colourInput("bcol", "Bar color", "grey90"),

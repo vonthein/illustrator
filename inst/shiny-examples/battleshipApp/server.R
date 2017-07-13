@@ -4,6 +4,7 @@ source("init.R")
 server <- function(input, output) {
 
   output$pdfPlot <- renderPlot({
+    par(mar=c(0,0,0,0))
     battleship(y, x, cens=0, dis=input$dis, xprop=input$xprop, space=input$space,
                his=input$his, binz=input$binz, fill=input$fill,
                err=input$err, loc=input$loc, prec=input$prec, connect=input$connect,
@@ -20,6 +21,7 @@ server <- function(input, output) {
                shipcol=shape::shadepalette(length(unique(x)),input$shipcol1,input$shipcol2),
                trials=0, start=list(m), mix=NA, genmix=F, df=4, kern="gaussian",
                sdsk=sqrt(var(y))/log(length(y)))
+    par(mar=c(5, 4, 4, 2) + 0.1)
   })
   output$pdfDescription <- renderText({paste(" ")})
   output$pdfSum <- renderText({paste(" ")})
