@@ -7,89 +7,58 @@ shinyUI(
     # sidebarPanel(
     fluidRow(
       column(2,#"sidebar",
-             sliderInput("binz",
-                         label = "binz Number of bins",
-                         value = 0, min = 0, max = round(3*sqrt(length(unique(y))),0),step=1),
-             sliderInput("space",
-                         label = "space Space between groups",
-                         value = 1,
-                         min = 0, max = 5, step=0.1),
-             checkboxInput("dot", label = paste("dot","Plot symbols"), value = TRUE),
-             checkboxInput("fill", label = paste("fill","Fill symbols"), value = TRUE),
-             checkboxInput("xprop", label = "xprop Joint rather than conditional distribution", value = TRUE),
-             checkboxInput("box", label = "box Boxplots", value = FALSE),
-             checkboxInput("err", label = "err Error bars", value = TRUE),
-             checkboxInput("connect", label = "connect Connect measures of location", value = FALSE),
-             checkboxInput("his", label = "his Histograms", value = FALSE),
-             checkboxInput("vio", label = "vio Violin plots", value = FALSE),
-             checkboxInput("ship", label = "ship Battleships", value = TRUE),
-             checkboxInput("dtr", label = "dtr Density trace residuals", value = TRUE),
-             radioButtons("loc",
-                          label = "loc Location of error bars",
-                          choices = list("mean" = "mean",
-                                         "geomean" = "geomean")),
-             radioButtons("prec",
-                          label = "prec Whiskers of error bars",
-                          choices = list("se" = "se",
-                                         "sd" = "sd",
-                                         "2se" = "2se",
-                                         "2sd" = "2sd"))
-      ),
-      column(8,#"main",
-             #mainPanel(
-             p("Dotplot, histograms, boxplots, violin plots, battleship plots, error bars"),
-             fluidRow(
-               column(6,
-                      selectInput("dis", label = "dis Distribution for battleships",
-                                  choices = list("normal" = "normal", "lognormal" = "lognormal", "t" = "t",
-                                                 "gamma" = "gamma", "beta" = "beta", "weibull" = "weibull",
-                                                 "poisson" = "poisson", "binomial" = "binomial"),
-                                  selected = "normal")
-               ),
-               column(6,
-                      selectInput("icon", label = "icon Symbol",
-                                  choices = choices,
-                                  selected = "loop")
-               )
-             ),
-             plotOutput("pdfPlot"),
-             selectInput("confluence", label = "confluence Confluence of integer variables",
-                         choices = list("Tufte" = "Tufte", "Tukey" = "Tukey", "Duerr" = "Duerr"),
-                         selected = "Tufte"),
-             textOutput("pdfDescription"),
-             strong(textOutput("pdfSum"))
-             #    ) # row
+             sliderInput("ni",
+                         label = "ni Number of symbols per group",
+                         value = 30, min = 1, max = 100, step=1),
+             sliderInput("nrow",
+                         label = "nrow Number of rows",
+                         value = 5,
+                         min = 0, max = 10, step=1),
+             sliderInput("path",
+                         label = "path Gap between groups",
+                         value = 5,
+                         min = 0, max = 15, step=0.1),
+             sliderInput("near",
+                         label = "near Factor to space between symbols in rows",
+                         value = 3,
+                         min = -3, max = 5, step=0.1),
+             sliderInput("sizeratio",
+                         label = "sizeratio Size proportion of right to left symbols",
+                         value = 1.4,
+                         min = 0, max = 5, step=0.1)
       ), # column
-      column(2,#"right",
-             colourpicker::colourInput("filcol1", "Fill color from", "lightblue"),
-             colourpicker::colourInput("filcol2", "Fill color to", "#66F50A"),
-             colourpicker::colourInput("elicol1", "Symbol color from", "blue"),
-             colourpicker::colourInput("elicol2", "Symbol color to", "green"),
-             conditionalPanel(condition="input.err",
-                              uiOutput("errcolfrom")        ),
-             conditionalPanel(condition="input.err",
-                              uiOutput("errcolto")        ),
-             conditionalPanel(condition="input.connect",
-                              uiOutput("concolfrom")        ),
-             conditionalPanel(condition="input.connect",
-                              uiOutput("concolto")        ),
-             conditionalPanel(condition="input.box",
-                              uiOutput("boxcolfrom")        ),
-             conditionalPanel(condition="input.box",
-                              uiOutput("boxcolto")        ),
-             conditionalPanel(condition="input.his",
-                              uiOutput("hiscolfrom")        ),
-             conditionalPanel(condition="input.his",
-                              uiOutput("hiscolto")        ),
-             conditionalPanel(condition="input.vio",
-                              uiOutput("viocolfrom")        ),
-             conditionalPanel(condition="input.vio",
-                              uiOutput("viocolto")        ),
-             conditionalPanel(condition="input.ship",
-                              uiOutput("shipcolfrom")        ),
-             conditionalPanel(condition="input.ship",
-                              uiOutput("shipcolto")        )
-      )
+      column(7,#"main",
+             plotOutput("pdfPlot"),
+             fluidRow(
+               column(4,
+               selectInput("icon", label = "icon Symbol",
+                                 choices = choices,
+                                 selected = "fir")
+               ),
+               column(3,
+                      sliderInput("iex",
+                                  label = "iex Symbol expansion factor",
+                                  value = 1,
+                                  min = 0, max = 10, step=0.1)
+               ),
+               column(3,
+                      sliderInput("ip",
+                                  label = "ip Symbol height factor",
+                                  value = 1,
+                                  min = 0, max = 5, step=0.1)
+               )) # row
+       ), # column
+      column(3,#"right",
+             colourpicker::colourInput("colle1", "Left color from", "green"),
+             colourpicker::colourInput("colle2", "Left color to", "lightgreen"),
+             colourpicker::colourInput("colre1", "Right color from", "darkgreen"),
+             colourpicker::colourInput("colre2", "Right color to", "green"),
+             colourpicker::colourInput("col", "Line color", "black"),
+             sliderInput("seed",
+                         label = "seed for random number generator",
+                         value = 12345, min = 1, max = 100000, step=1)
+      ) # column
     ) # row
   ) # page
-)
+) # ui
+
