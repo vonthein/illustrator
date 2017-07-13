@@ -20,13 +20,13 @@ shinyUI(
                          value = 1.5,
                          min = 0, max = 99999)
       ),
-      column(8,
+      column(7,
              p("Cluster"),
              plotOutput("pdfPlot"),
              textOutput("pdfDescription"),
              strong(textOutput("pdfSum"))
       ),
-      column(2,
+      column(3,
              sliderInput("m",
                          label = "Magnification of symbols",
                          value = 3, min = 1, max = 21,step=0.1),
