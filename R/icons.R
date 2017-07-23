@@ -97,9 +97,8 @@ fir <- matrix(c(0,0.5, 4,0, 8,0.5,
 3.5,8, 2,5.5, 3,5.5, 1,3, 2.5,3, 0,0.5, NA,NA),16,2,T)
 Nadelbaum <- fir; Tanne <- fir
 #
-bush <- matrix(c(2,0, 5,0,
-6,2, 7,4, 7,6, 6,8.5, 4,10,
-2,10, 0,8.5, -1,6, -1,4, 0,2, 1,0, NA,NA),14,2,T)
+bush <- matrix(c(1,0, 5,0, 6,2, 7,4, 7,6, 6,8.5, 4,10,
+                 2,10, 0,8.5, -1,6, -1,4, 0,2, 1,0, NA,NA),14,2,T)
 Busch <- bush
 #
 rat <- matrix(c(46,0, 0,0, 5,5, 8,7, 10,8, 12,7, 13,6, 20,10, 24,11,
@@ -320,6 +319,25 @@ bulb <- matrix(c(3.5,0, 3,0.25, 3.5,0.5, 3,0.75, 3.5,1, 3,1.25, 3.5,1.5, 3,1.75,
                  NA,NA),ncol=2,byrow=TRUE)
 Glühbirne <- bulb
 # plot(bulb,type="l",col="orange");polygon(bulb,col="yellow")
+glas <- rbind(cbind(2 + 4 * loop[,1], 1 + loop[,2]), # Fuß
+              matrix(c(NA,NA, 2.2,5.03, 2.2,1.3),ncol=2,byrow=TRUE), # Stil
+              cbind(2 + 0.4 * loop[10:28,1],1.2 + 0.1 * loop[10:28,2]), # Stil unten
+              matrix(c(1.8,1.3, 1.8,5.03, NA,NA),ncol=2,byrow=TRUE), # Stil links
+              matrix(c(NA,NA, 4,12, 4,11),ncol=2,byrow=TRUE), # Kelch rechts
+              cbind(2 + 4 * loop[10:27,1],9 + 8 * loop[10:27,2]), # Kelch unten
+              matrix(c(0,11, 0,12, NA,NA),ncol=2,byrow=TRUE), # Kelch links
+              cbind(2 + 4 * loop[,1],12 + 1 * loop[,2])) # Kelch oben
+Glas <- glas
+#plot(glas,type="l",col="orange");polygon(glas,col="yellow")
+bottle <- rbind(matrix(c(NA,NA, 2.5,12, 2.5,10, 2.7,9.4, 3.3,8.4,# Hals rechts
+                         3.75,7.4, 4,6, 4,1),ncol=2,byrow=TRUE), # Breite rechts
+              cbind(2 + 4 * loop[10:27,1],1 + 2 * loop[10:27,2]), # Breite unten
+              matrix(c(0,1, 0,6, 0.25,7.4, 0.7,8.4, # Breite links
+                       1.3,9.4, 1.5,10, 1.5,12, NA,NA),ncol=2,byrow=TRUE), # Hals rechts
+              cbind(2 + 1 * loop[,1],12 + 0.2 * loop[,2])) # Hals oben
+Flasche <- bottle
+#polygon(bottle,col="yellow");plot(bottle,type="l",col="orange")
+
 paper <- matrix(c(1,0, 11,0, 11,14, 10,14, 10,1, 1,1, 1,0, NA,NA,
                   0,1, 0,15, 10,15, 10,1, 0,1, NA,NA),ncol=2,byrow=TRUE)
 Papier <- paper
@@ -342,33 +360,39 @@ open.book <- matrix(c(6,1, 6,11, NA,NA,
                       NA,NA),ncol=2,byrow=TRUE)
 offenes.Buch <- open.book
 # plot(open.book,type="l",col="orange");polygon(open.book,col="yellow")
+heart <- matrix(c(0,0, 0.2,0.6, 0.5,1.2, 0.8,1.7, 1.1,2.6, 1.2,3.4, 1.2,4.6, 1,5.6,
+                  0.7,6, 0.4,6, 0.2,5.7, 0,5, -.2,5.7, -.4,6, -.7,6, -1,5.6,
+                  -1.2,4.6, -1.2,3.4, -1.1,2.6, -.8,1.7, -.5,1.2, -.2,.6, 0,0, NA,NA),ncol=2,byrow=TRUE)
+heart <- cbind(2*heart[,1],heart[,2])
+Herz <- heart
+# plot(heart,type="l",col="darkred");polygon(heart,col="red")
 
 icons <- list(Stern,Nadelbaum,Busch,Mensch,Mann,Frau,Familie,Familie2,Fahrrad,Schwein,
             Dorsch,Kaninchen,Knochen,Vase,Frucht,Ackerschmalwand,Petrischale,Maus,
             Muschel,Weizen,Zebrabärbling,Seestern,Ei,Blume,Fruchtfliege,Wurm,Hefe,
             E.coli,Glühbirne,Haus,Fabrik,Moschee=9*mosque,KKW=9*KKW,Auto=3*car,alphadach,betadach,thetadach,
-            Buch,offenes.Buch,Papier)
+            Buch,offenes.Buch,Papier,Glas,Flasche,Herz)
 
 iconsD <- c("Stern","Nadelbaum","Busch","Mensch","Mann","Frau","Familie","Familie2","Fahrrad","Schwein",
             "Dorsch","Kaninchen","Knochen","Vase","Frucht","Ackerschmalwand","Petrischale","Maus",
             "Muschel","Weizen","Zebrabärbling","Seestern","Ei","Blume","Fruchtfliege","Wurm","Hefe",
             "E.coli","Glühbirne","Haus","Fabrik","Moschee","KKW","Auto",
-            "alphadach","betadach","thetadach","Buch","offenes.Buch","Papier")
+            "alphadach","betadach","thetadach","Buch","offenes.Buch","Papier","Glas","Flasche","Herz")
 iconsE <- c("star","fir","bush","human","man","woman","family","family2","bike","pig",
                "cod","rabbit","bone","vase","fruit","arabidopsis","dish","mouse",
                "shell","wheat","zebrafish","starfish","egg","flower","drosophila","worm","yeast",
                "germ","bulb","house","mill","mosque","nuclear.powerplant","car",
-            "alphahat","betahat","thetahat","book","open.book","paper")
+            "alphahat","betahat","thetahat","book","open.book","paper","glas","bottle","heart")
 iconsCL <- c("gold","darkgreen","darkgreen","brown","blue", "pink", "darkgreen", "darkgrey", "blue","pink",
              "blue","brown","grey","grey20","pink","darkgreen","gold","gray",
              "white","gold","black","pink","gold","lightcyan","brown","grey","grey",
              "gray","gold","grey80","black","darkgrey","black","darkblue",
-             "black","black","black","black","black","black")
+             "black","black","black","black","black","black","orange","darkgreen","darkred")
 iconsCF <- c("white","green","green","white","lavender","mistyrose","lightgreen","yellow",NA,"mistyrose",
              "lavender","gold","white","lavender","orange","green","white","white",
              "grey","cornsilk","white","orange","white","magenta","gold","gray95","lavender",
              "lightgray","white","red","grey","white","lightgrey","blue",
-             NA,NA,NA,"gold","gold",NA)
+             NA,NA,NA,"gold","gold",NA,"yellow","green","red")
 iconsCol <- cbind(DE=iconsD,EN=iconsE,lcol=iconsCL,fcol=iconsCF)
 
 ##
@@ -395,3 +419,4 @@ show.icons <- function(x=NULL){
    }
   }
 }
+#show.icons()
