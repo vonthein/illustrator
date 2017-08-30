@@ -50,7 +50,7 @@ Tplot <- function(x,N=sum(x[,1]),nc=max(apply(as.matrix(row.names(x)),1,stringr:
 # x      matrix with labels in rownames and absolute frequencies in x[,1]
 # N      total number (denominator), if not sum(x[,1])
 # nc     number of characters of labels
-# ns     scal of labels
+# ns     scale of labels
 # verbose if TRUE, frequencies appear in labels
 # icon   two-column matrix of coordinates or "bar" for barplot
 # space  factor, usually 0.5 < 1, applied to x-dimension of icons for spacing
@@ -89,7 +89,8 @@ Tplot <- function(x,N=sum(x[,1]),nc=max(apply(as.matrix(row.names(x)),1,stringr:
     # calculate scaling
     iwid <- max(icon[,1],na.rm=TRUE)-min(icon[,1],na.rm=TRUE)
     ihig <- max(icon[,2],na.rm=TRUE)-min(icon[,2],na.rm=TRUE)
-    nii <- N*pe / (10^(round(log10(N*am),0)))
+    cps <- round(log10(N*am),0) # count per symbol
+    nii <- N*pe / (10^cps)
     if(cut){
       ni <- floor(nii)
       pi <- nii - ni                        # proportion to show

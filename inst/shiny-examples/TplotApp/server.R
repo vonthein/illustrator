@@ -12,5 +12,7 @@ server <- function(input, output) {
           xlab = "Häufigkeit in % von N"
     ) # Tplot
   }) # pdfPlot
-  output$pdfDescription <- renderText({paste("Symbole zeigen absolute Häufigkeit, häufigste Klasse zuerst.")})
+  cps <- 10^round(log10(max(x))-2,0) # count per symbol
+  output$pdfDescription <- renderText({paste("Symbole zeigen absolute Häufigkeit, 1 Symbol für",
+                                             cps, "Beobachtungen, häufigste Klasse zuerst.")})
 } # server
