@@ -112,21 +112,24 @@ man <- matrix(c(1.1,0, 1.8,0, 2.5,3.5, 3.2,0, 3.9,0,
 5,4, 4.5,6.5, 4.1,7.7, 3.5,7.8, 3,7.9, 3,8.2, 3.3,8.4, 3.5,8.9, 3.3,9.4, 2.8,9.7,
 2.2,9.7, 1.7,9.4, 1.5,8.9, 1.7,8.4, 2,8.2, 2,7.9, 1.5,7.8, 0.9,7.7, 0.5,6.6, 0,4,
 0.3,4, 1,6.5, 1.2,7, 1.3,3.5, 1.1,0, NA,NA),ncol=2,byrow=TRUE)
-man[,1] <- man[,1]/2; man <- 1.2*man; male <- man; Mann <- man
+man[,1] <- man[,1]/2;
+man <- 1.2*man; male <- man; Mann <- man
 # plot(man,type="l")
 woman <- matrix(c(1.3,0, 1.8,0, 2.5,3.5, 3.2,0, 3.7,0, 4.1,3.6, 4,4.5, 3.8,5.2, 3.6,5.5,
                 3.8,7, 4,6.6, 4.7,4,
                 5,4, 4.5,6.6, 4,7.6, 3.2,7.8, 3,7.9, 3,8.2, 3.4,8.5, 3.6,8.9, 3.4,9.4, 2.8,9.7,
                 2.2,9.7, 1.6,9.4, 1.4,8.9, 1.6,8.5, 2,8.2, 2,7.9, 1.8,7.8, 1,7.6, 0.5,6.6, 0,4,
                 0.3,4, 1,6.6, 1.2,7, 1.4,5.5, 1.2,5.2, 1, 4.5, 0.9,3.6, 1.3,0, NA,NA),ncol=2,byrow=TRUE)
-woman[,1] <- woman[,1]/2; woman <- 1.2*woman; female <- woman; Frau <- woman
+woman[,1] <- woman[,1]/2;
+woman <- 1.2*woman; female <- woman; Frau <- woman
 # plot(woman,type="l") # plot(woman,type="b",pch=".")
 human <- matrix(c(1.2,0, 1.9,0, 2.5,3.5, 3.1,0, 3.8,0,
                   3.8,0, 3.8,7, 4,6.6, 4.7,4,
                   5,4, 4.5,6.6, 4,7.6, 3.5,7.8, 3,8, 3,8.3, 3.5,8.5, 3.7,9, 3.5,9.5, 3,9.8,
                   2,9.8, 1.5,9.5, 1.3,9, 1.5,8.5, 2,8.3, 2,8, 1.5,7.8, 1,7.6, 0.5,6.6, 0,4,
                   0.3,4, 1,6.6, 1.2,7, 1.2,0, NA,NA),ncol=2,byrow=TRUE)
-human[,1] <- human[,1]/2; human <- 1.2*human
+human[,1] <- human[,1]/2;
+human <- 1.2*human
 # plot(human,type="l")
 Homo.sapiens <- human; H.sapiens <- human; Mensch <- human#
 h <- length(human[,1])
@@ -134,16 +137,22 @@ family <- rbind(woman,
                 matrix(c(2.33,0),ncol=2,nrow=h,T)+0.4*human,
                 matrix(c(3.35,0),ncol=2,nrow=h,T)+0.7*human,
                 matrix(c(5.3,0),ncol=2,nrow=length(man[,1]),T)+1.08*man)
-family[,1] <- family[,1]*2
+family[,1] <- family[,1]*1.5
 Familie <- family
 # plot(family,type="l")
 family2 <- rbind(0.4*human,
                 matrix(c(0.55,0),ncol=2,nrow=length(woman[,1]),T)+woman,
                 matrix(c(3.53,0),ncol=2,nrow=length(man[,1]),T)+1.08*man,
                 matrix(c(6.6,0),ncol=2,nrow=h,T)+0.7*human)
-family2[,1] <- family2[,1]*2
+family2[,1] <- family2[,1]*1.5
 Familie2 <- family2
 # plot(family2,type="l")
+
+  man[,1] <-   man[,1]*1.5; Mann <- man
+woman[,1] <- woman[,1]*1.5; Frau <- woman
+human[,1] <- human[,1]*1.5; Mensch <- human; Homo.sapiens <- human; H.sapiens <- human
+
+
 bone <- matrix(c(1.5,5, 1.5,4.5, 0.5,3, 0.5,2, 1,1, 3,0.5, 7,0.5,
 10,1, 12,2, 15,3, 17,3.2, 30,3.2),
                ncol=2,byrow=TRUE)
@@ -295,11 +304,11 @@ mosque <- rbind(cbind(-loop[10:1,1],loop[10:1,2]),loop[1:10,], # cupola
                 matrix(c(0.5,0.8, 0.55,1, 0.6,0.8, 0.6,-0.5, -0.6,-0.5, # minaretts
                          -0.6,0.8, -0.55,1, -0.5,0.8, -0.5,0,
                        NA,NA),
-               ncol=2,byrow=TRUE))
+               ncol=2,byrow=TRUE)) + matrix(c(0.6,0),ncol=2,nrow=30,byrow=TRUE)
 Moschee <- mosque
 # (mosque,type="l");polygon(mosque,col="orange")
 KKW <- mosque[-c(22,26,27,28),]
-KKW [24,] <- c(-0.5,-0.5)
+KKW [24,] <- c(+0.1,-0.5)
 nuclear.powerplant <- KKW; Kernkraftwerk <- KKW
 Atomkraftwerk <- Kernkraftwerk; AKW <- Atomkraftwerk; NPP <- AKW
 # plot(AKW,type="l");polygon(AKW,col="orange")
@@ -369,30 +378,35 @@ Herz <- heart
 
 icons <- list(Stern,Nadelbaum,Busch,Mensch,Mann,Frau,Familie,Familie2,Fahrrad,Schwein,
             Dorsch,Kaninchen,Knochen,Vase,Frucht,Ackerschmalwand,Petrischale,Maus,
-            Muschel,Weizen,Zebrabärbling,Seestern,Ei,Blume,Fruchtfliege,Wurm,Hefe,
-            E.coli,Glühbirne,Haus,Fabrik,Moschee=9*mosque,KKW=9*KKW,Auto=3*car,alphadach,betadach,thetadach,
-            Buch,offenes.Buch,Papier,Glas,Flasche,Herz)
+            Wurm,Weizen,Zebrabärbling,Seestern,Ei,Blume,Fruchtfliege,Muschel,Hefe,
+            E.coli,Glühbirne,Moschee=9*mosque,KKW=9*KKW,Haus,Fabrik,Auto=3*car,
+            #alphadach,
+            betadach,thetadach,Buch,offenes.Buch,Papier,Glas,Flasche,Herz)
 
 iconsD <- c("Stern","Nadelbaum","Busch","Mensch","Mann","Frau","Familie","Familie2","Fahrrad","Schwein",
             "Dorsch","Kaninchen","Knochen","Vase","Frucht","Ackerschmalwand","Petrischale","Maus",
-            "Muschel","Weizen","Zebrabärbling","Seestern","Ei","Blume","Fruchtfliege","Wurm","Hefe",
-            "E.coli","Glühbirne","Haus","Fabrik","Moschee","KKW","Auto",
-            "alphadach","betadach","thetadach","Buch","offenes.Buch","Papier","Glas","Flasche","Herz")
+            "Wurm","Weizen","Zebrabärbling","Seestern","Ei","Blume","Fruchtfliege","Muschel","Hefe",
+            "E.coli","Glühbirne","Moschee","KKW","Haus","Fabrik","Auto",
+            #"alphadach",
+            "betadach","thetadach","Buch","offenes.Buch","Papier","Glas","Flasche","Herz")
 iconsE <- c("star","fir","bush","human","man","woman","family","family2","bike","pig",
                "cod","rabbit","bone","vase","fruit","arabidopsis","dish","mouse",
-               "shell","wheat","zebrafish","starfish","egg","flower","drosophila","worm","yeast",
-               "germ","bulb","house","mill","mosque","nuclear.powerplant","car",
-            "alphahat","betahat","thetahat","book","open.book","paper","glas","bottle","heart")
+               "worm","wheat","zebrafish","starfish","egg","flower","drosophila","shell","yeast",
+               "germ","bulb","mosque","nuclear.powerplant","house","mill","car",
+            #"alphahat",
+            "betahat","thetahat","book","open.book","paper","glas","bottle","heart")
 iconsCL <- c("gold","darkgreen","darkgreen","brown","blue", "pink", "darkgreen", "darkgrey", "blue","pink",
              "blue","brown","grey","grey20","pink","darkgreen","gold","gray",
-             "white","gold","black","pink","gold","lightcyan","brown","grey","grey",
-             "gray","gold","grey80","black","darkgrey","black","darkblue",
-             "black","black","black","black","black","black","orange","darkgreen","darkred")
+             "grey","gold","black","pink","gold","lightcyan","brown","white","grey",
+             "gray","gold","darkgrey","black","grey80","black","darkblue",
+             #"black",
+             "black","black","black","black","black","orange","darkgreen","darkred")
 iconsCF <- c("white","green","green","white","lavender","mistyrose","lightgreen","yellow",NA,"mistyrose",
              "lavender","gold","white","lavender","orange","green","white","white",
-             "grey","cornsilk","white","orange","white","magenta","gold","gray95","lavender",
-             "lightgray","white","red","grey","white","lightgrey","blue",
-             NA,NA,NA,"gold","gold",NA,"yellow","green","red")
+             "gray95","cornsilk","white","orange","white","magenta","gold","grey","lavender",
+             "lightgray","white","white","lightgrey","red","grey","blue",
+             #NA,
+             NA,NA,"gold","gold",NA,"yellow","green","red")
 iconsCol <- cbind(DE=iconsD,EN=iconsE,lcol=iconsCL,fcol=iconsCF)
 
 ##
