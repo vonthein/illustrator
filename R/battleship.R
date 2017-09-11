@@ -1000,7 +1000,7 @@ battleship <- function(y, cens=0, x=1, dis="normal", xprop=T, space=1, his=NA, b
   else {elicol <- as.list(elicol[1:m])}
  }
  if(length(hiscol)==1) hiscol <- rep(hiscol,m)
- if(length(viocol)==1) viocol <- rep(hiscol,m)
+ if(length(viocol)==1) viocol <- rep(viocol,m)
  if(length(boxcol)==1) boxcol <- rep(boxcol,m)
  if(length(errcol)==1) errcol <- rep(errcol,m)
  if(length(concol)==1) concol <- rep(concol,cs)
