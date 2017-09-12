@@ -50,12 +50,19 @@ shinyUI(
                       selectInput("icon", label = "icon Symbol",
                                   choices = choices,
                                   selected = "loop")
-               )
-             ),
+               )             ),
              plotOutput("pdfPlot"),
+             column(4,
+                    sliderInput("plank",
+                                label = "plank Ship-line width",
+                                value = 2,
+                                min = 0.1, max = 5, step=0.1)
+             ),
+             column(8,
              selectInput("confluence", label = "confluence Confluence of integer variables",
                          choices = list("Tufte" = "Tufte", "Tukey" = "Tukey", "Duerr" = "Duerr"),
-                         selected = "Tufte"),
+                         selected = "Tufte")
+             ),
              textOutput("pdfDescription"),
              strong(textOutput("pdfSum"))
              #    ) # row
