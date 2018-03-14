@@ -492,7 +492,6 @@ add.icon <- function(x, # matrix of coordinates
   if(is.data.frame(x)) x <- as.matrix(x)
   stopifnot(is.numeric(x[,1:2]))
   ni <- length(names(icons))
-  assign("icons", c(icons, list(rbind(x[,1:2],NA))), envir = .GlobalEnv)
   assign("iconsCL", c(iconsCL, line.col), envir = .GlobalEnv)
   assign("iconsCF", c(iconsCF, fill.col), envir = .GlobalEnv)
   if(!is.null(deutsch)) {
@@ -502,7 +501,7 @@ add.icon <- function(x, # matrix of coordinates
       deutsch <- deutsch[1]
     } # length of deutsch
     assign("iconsD", c(iconsD, deutsch), envir = .GlobalEnv)
-    #assign("names(icons)", c(names(icons), deutsch), envir = .GlobalEnv)
+    na <- deutsch
   } # deutsch not supplied
   if(!is.null(alias)) {
     stopifnot(is.character(alias))
@@ -512,12 +511,13 @@ add.icon <- function(x, # matrix of coordinates
     } # length of alias
     if(is.null(deutsch)) assign("iconsD",c(iconsD, alias), envir = .GlobalEnv)
     assign("iconsE",c(iconsE, alias), envir = .GlobalEnv)
-    #assign("names(icons)", c(names(icons), alias), envir = .GlobalEnv)
+    na <- alias
   } # alias supplied
   if(is.null(deutsch) & is.null(alias)) {
-    #("names(icons)", c(names(icons), deparse(substitute(x))), envir = .GlobalEnv)
+    na <- deparse(substitute(x))
     assign("iconsE",c(iconsE, deparse(substitute(x))), envir = .GlobalEnv)
   }
+  assign("icons", c(icons, eval(na) = list(rbind(x[,1:2],NA))), envir = .GlobalEnv)
 } # add.icon
 
 # discard all icons and add just one icon
@@ -530,7 +530,6 @@ set.icon <- function(x, # matrix of coordinates
   if(is.data.frame(x)) x <- as.matrix(x)
   stopifnot(is.numeric(x[,1:2]))
   ni <- length(names(icons))
-  assign("icons", list(rbind(x[,1:2],NA)), envir = .GlobalEnv)
   assign("iconsCL", line.col, envir = .GlobalEnv)
   assign("iconsCF", fill.col, envir = .GlobalEnv)
   if(!is.null(deutsch)) {
@@ -540,7 +539,7 @@ set.icon <- function(x, # matrix of coordinates
       deutsch <- deutsch[1]
     } # length of deutsch
     assign("iconsD", deutsch, envir = .GlobalEnv)
-    #assign("names(icons)", deutsch, envir = .GlobalEnv)
+    na <- deutsch
   } # deutsch not supplied
   if(!is.null(alias)) {
     stopifnot(is.character(alias))
@@ -550,10 +549,11 @@ set.icon <- function(x, # matrix of coordinates
     } # length of alias
     if(is.null(deutsch)) assign("iconsD",alias, envir = .GlobalEnv)
     assign("iconsE", alias, envir = .GlobalEnv)
-    #assign("names(icons)", alias, envir = .GlobalEnv)
+    na <- alias
   } # alias supplied
   if(is.null(deutsch) & is.null(alias)) {
-    #("names(icons)", deparse(substitute(x)), envir = .GlobalEnv)
+    na <- deparse(substitute(x))
     assign("iconsE", deparse(substitute(x)), envir = .GlobalEnv)
   }
+  assign("icons", eval(na) =list(rbind(x[,1:2],NA)), envir = .GlobalEnv)
 } # set.icon
