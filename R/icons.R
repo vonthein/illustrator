@@ -375,7 +375,7 @@ heart <- matrix(c(0,0, 0.2,0.6, 0.5,1.2, 0.8,1.7, 1.1,2.6, 1.2,3.4, 1.2,4.6, 1,5
 heart <- cbind(2*heart[,1],heart[,2])
 Herz <- heart
 # plot(heart,type="l",col="darkred");polygon(heart,col="red")
-drops <- rbind(loop[6:31,], 0:1, loop[6,])
+drops <- rbind(loop[6:31,], 0:1, loop[6,], NA)
 Tropfen <- drops
 # plot(drops,type="l",col="darkred");polygon(drops,col="red")
 syring <- matrix(c(0,0, 0,-0.5, 0,0, -0.2,0, -0.2,0.7, 0.2,0.7, 0.2,1, -0.2,1,
@@ -430,6 +430,7 @@ iconsE <- c("star","fir","bush","human","man","woman","family","family2","bike",
             #"alphahat",
             "betahat","thetahat","book","open.book","paper","glas","bottle","heart",
             "drops","syringe","capsule")
+names(icons) <- iconsE
 iconsCL <- c("gold","darkgreen","darkgreen","brown","blue", "pink", "darkgreen", "darkgrey", "blue","pink",
              "blue","brown","grey","grey20","pink","darkgreen","gold","gray",
              "grey","gold","black","pink","gold","lightcyan","brown","white","grey",
