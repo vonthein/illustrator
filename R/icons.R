@@ -491,7 +491,7 @@ add.icon <- function(x, # matrix of coordinates
                      ) {
   if(is.data.frame(x)) x <- as.matrix(x)
   stopifnot(is.numeric(x[,1:2]))
-  ni <- length(names(icons))
+  new <- c(icons, list(rbind(x[,1:2],NA)))
   assign("iconsCL", c(iconsCL, line.col), envir = .GlobalEnv)
   assign("iconsCF", c(iconsCF, fill.col), envir = .GlobalEnv)
   if(!is.null(deutsch)) {
@@ -517,7 +517,8 @@ add.icon <- function(x, # matrix of coordinates
     na <- deparse(substitute(x))
     assign("iconsE",c(iconsE, deparse(substitute(x))), envir = .GlobalEnv)
   }
-  assign("icons", c(icons, eval(na) = list(rbind(x[,1:2],NA))), envir = .GlobalEnv)
+  names(new) <- c(names(icons), na)
+  assign("icons", new, envir = .GlobalEnv)
   assign(na, rbind(x[,1:2],NA), envir = .GlobalEnv)
 } # add.icon
 
@@ -530,7 +531,7 @@ set.icon <- function(x, # matrix of coordinates
 ) {
   if(is.data.frame(x)) x <- as.matrix(x)
   stopifnot(is.numeric(x[,1:2]))
-  ni <- length(names(icons))
+  new <- list(rbind(x[,1:2],NA))
   assign("iconsCL", line.col, envir = .GlobalEnv)
   assign("iconsCF", fill.col, envir = .GlobalEnv)
   if(!is.null(deutsch)) {
@@ -556,6 +557,7 @@ set.icon <- function(x, # matrix of coordinates
     na <- deparse(substitute(x))
     assign("iconsE", deparse(substitute(x)), envir = .GlobalEnv)
   }
-  assign("icons", eval(na) =list(rbind(x[,1:2],NA)), envir = .GlobalEnv)
+  names(new) <- na
+  assign("icons", new, envir = .GlobalEnv)
   assign(na, rbind(x[,1:2],NA), envir = .GlobalEnv)
 } # set.icon
