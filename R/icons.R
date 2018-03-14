@@ -414,7 +414,7 @@ icons <- list(Stern,Nadelbaum,Busch,Mensch,Mann,Frau,Familie,Familie2,Fahrrad,Sc
             E.coli,Glühbirne,Moschee=9*mosque,KKW=9*KKW,Haus,Fabrik,Auto=3*car,
             #alphadach,
             betadach,thetadach,Buch,offenes.Buch,Papier,Glas,Flasche,Herz,
-            6*Tropfen,10*Spritze,Kapsel)
+            5*Tropfen,10*Spritze,Kapsel)
 
 iconsD <- c("Stern","Nadelbaum","Busch","Mensch","Mann","Frau","Familie","Familie2","Fahrrad","Schwein",
             "Dorsch","Kaninchen","Knochen","Vase","Frucht","Ackerschmalwand","Petrischale","Maus",
@@ -457,8 +457,16 @@ I <- length(iconsD)
 #}
 #for(i in 1:I) pp(iconsCol[i,])
 show.icons <- function(x=NULL){
+  if(!is.null(.GlobalEnv$icons)) icons <- .GlobalEnv$icons
+  if(!is.null(.GlobalEnv$iconsD)) iconsD <- .GlobalEnv$iconsD
+  if(!is.null(.GlobalEnv$iconsCL)) iconsCL <- .GlobalEnv$iconsCL
+  if(!is.null(.GlobalEnv$iconsCF)) iconsCF <- .GlobalEnv$iconsCF
+  I <- length(iconsD)
+  par(mar = rep(0,4)+0.1)
   rc <- ceiling(sqrt(I))
-  plot(c(15,19*rc+20),c(15,19*rc+10),pch="")
+  plot(c(15,19*rc+20), c(15,19*rc+10),
+       pch = "", asp = 1,
+       bty = "n", xaxt = "n", yaxt = "n")
   for (i in 1:rc) {
    for (j in 1:rc) {
     k <- rc*(i-1)+j
@@ -469,5 +477,82 @@ show.icons <- function(x=NULL){
       lines(icons[[k]][,1]+19*i,icons[[k]][,2]+19*j,col=iconsCL[k])
    }
   }
+  par(mar = c(5, 4, 4, 2) + 0.1)
 }
 #show.icons()
+
+# keep all icons and add one icon
+add.icon <- function(x, # matrix of coordinates
+                     alias = NULL, # name, if different
+                     deutsch = NULL, # name in german
+                     line.col = "black", # outline color for show.icons
+                     fill.col = "mistyrose" # fill color for show.icons
+                     ) {
+  if(is.data.frame(x)) x <- as.matrix(x)
+  stopifnot(is.numeric(x[,1:2]))
+  ni <- length(names(icons))
+  assign("icons", c(icons, list(rbind(x[,1:2],NA))), envir = .GlobalEnv)
+  assign("iconsCL", c(iconsCL, line.col), envir = .GlobalEnv)
+  assign("iconsCF", c(iconsCF, fill.col), envir = .GlobalEnv)
+  if(!is.null(deutsch)) {
+    stopifnot(is.character(deutsch))
+    if(length(deutsch)>1) {
+      cat("\n only first element of deutsch used\n")
+      deutsch <- deutsch[1]
+    } # length of deutsch
+    assign("iconsD", c(iconsD, deutsch), envir = .GlobalEnv)
+    #assign("names(icons)", c(names(icons), deutsch), envir = .GlobalEnv)
+  } # deutsch not supplied
+  if(!is.null(alias)) {
+    stopifnot(is.character(alias))
+    if(length(alias)>1) {
+      cat("\n only first element of alias used\n")
+      alias <- alias[1]
+    } # length of alias
+    if(is.null(deutsch)) assign("iconsD",c(iconsD, alias), envir = .GlobalEnv)
+    assign("iconsE",c(iconsE, alias), envir = .GlobalEnv)
+    #assign("names(icons)", c(names(icons), alias), envir = .GlobalEnv)
+  } # alias supplied
+  if(is.null(deutsch) & is.null(alias)) {
+    #("names(icons)", c(names(icons), deparse(substitute(x))), envir = .GlobalEnv)
+    assign("iconsE",c(iconsE, deparse(substitute(x))), envir = .GlobalEnv)
+  }
+} # add.icon
+
+# discard all icons and add just one icon
+set.icon <- function(x, # matrix of coordinates
+                     alias = NULL, # name, if different
+                     deutsch = NULL, # name in german
+                     line.col = "black", # outline color for show.icons
+                     fill.col = "mistyrose" # fill color for show.icons
+) {
+  if(is.data.frame(x)) x <- as.matrix(x)
+  stopifnot(is.numeric(x[,1:2]))
+  ni <- length(names(icons))
+  assign("icons", list(rbind(x[,1:2],NA)), envir = .GlobalEnv)
+  assign("iconsCL", line.col, envir = .GlobalEnv)
+  assign("iconsCF", fill.col, envir = .GlobalEnv)
+  if(!is.null(deutsch)) {
+    stopifnot(is.character(deutsch))
+    if(length(deutsch)>1) {
+      cat("\n only first element of deutsch used\n")
+      deutsch <- deutsch[1]
+    } # length of deutsch
+    assign("iconsD", deutsch, envir = .GlobalEnv)
+    #assign("names(icons)", deutsch, envir = .GlobalEnv)
+  } # deutsch not supplied
+  if(!is.null(alias)) {
+    stopifnot(is.character(alias))
+    if(length(alias)>1) {
+      cat("\n only first element of alias used\n")
+      alias <- alias[1]
+    } # length of alias
+    if(is.null(deutsch)) assign("iconsD",alias, envir = .GlobalEnv)
+    assign("iconsE", alias, envir = .GlobalEnv)
+    #assign("names(icons)", alias, envir = .GlobalEnv)
+  } # alias supplied
+  if(is.null(deutsch) & is.null(alias)) {
+    #("names(icons)", deparse(substitute(x)), envir = .GlobalEnv)
+    assign("iconsE", deparse(substitute(x)), envir = .GlobalEnv)
+  }
+} # set.icon
