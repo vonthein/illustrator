@@ -518,6 +518,7 @@ add.icon <- function(x, # matrix of coordinates
     assign("iconsE",c(iconsE, deparse(substitute(x))), envir = .GlobalEnv)
   }
   assign("icons", c(icons, eval(na) = list(rbind(x[,1:2],NA))), envir = .GlobalEnv)
+  assign(na, rbind(x[,1:2],NA), envir = .GlobalEnv)
 } # add.icon
 
 # discard all icons and add just one icon
@@ -556,4 +557,5 @@ set.icon <- function(x, # matrix of coordinates
     assign("iconsE", deparse(substitute(x)), envir = .GlobalEnv)
   }
   assign("icons", eval(na) =list(rbind(x[,1:2],NA)), envir = .GlobalEnv)
+  assign(na, rbind(x[,1:2],NA), envir = .GlobalEnv)
 } # set.icon

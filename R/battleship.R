@@ -323,7 +323,7 @@ battleship <- function(y, cens=0, x=1, dis="normal", xprop=T, space=1, his=NA, b
    }
   }
  # sort out icons
- if(!is.null(.GlobalEnv$icons)) attach(.GlobalEnv$icons)
+ #if(!is.null(.GlobalEnv$icons)) attach(.GlobalEnv$icons)
  icons <- list(); for(i in 1:m) {icons[[i]] <- list()}
  scale.icon <- function(ico) {
    if(dim(ico)[2]>2) {
