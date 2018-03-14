@@ -9,7 +9,7 @@ shinyUI(
       column(2,#"sidebar",
              sliderInput("binz",
                          label = "binz Number of bins",
-                         value = 0, min = 0, max = round(3*sqrt(length(unique(y))),0),step=1),
+                         value = 0, min = 0, max = round(5*sqrt(length(unique(y))),0),step=1),
              sliderInput("space",
                          label = "space Space between groups",
                          value = 1,
