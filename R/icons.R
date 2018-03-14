@@ -375,38 +375,75 @@ heart <- matrix(c(0,0, 0.2,0.6, 0.5,1.2, 0.8,1.7, 1.1,2.6, 1.2,3.4, 1.2,4.6, 1,5
 heart <- cbind(2*heart[,1],heart[,2])
 Herz <- heart
 # plot(heart,type="l",col="darkred");polygon(heart,col="red")
+drops <- rbind(loop[6:31,], 0:1, loop[6,])
+Tropfen <- drops
+# plot(drops,type="l",col="darkred");polygon(drops,col="red")
+syring <- matrix(c(0,0, 0,-0.5, 0,0, -0.2,0, -0.2,0.7, 0.2,0.7, 0.2,1, -0.2,1,
+                    -0.2,0.7, -0.2,1, 0,1, 0,1.4, -0.2,1.4, 0.2,1.4, 0,1.4, 0,0.7, 0,1,
+                    0.2,1, 0.2,0, 0,0, NA,NA),ncol=2,byrow=TRUE)
+syringe <- rbind(cbind(0.4*loop[1:36,1],1.4+0.1*-loop[1:36,2]),
+                 cbind(0.4*loop[37:1,1],1.4+0.1*-loop[37:1,2]), NA, # oben
+                 cbind(0.4*loop[2:36,1],1+0.1*loop[2:36,2]),
+                 cbind(0.4*loop[36:2,1],1+0.1*loop[36:2,2]), NA, # oberer Rand
+                 matrix(c(-0.2,1, -0.2,0),ncol=2,byrow=TRUE),
+                 cbind(0.4*-loop[9:27,1],0.1*loop[9:27,2]), # unterer Rand
+                 matrix(c(0.2,0, 0.2,1, 0.2,0.8),ncol=2,byrow=TRUE),
+                 cbind(0.4*loop[9:36,1],0.7+0.1*-loop[9:36,2]),
+                 cbind(0.4*loop[1:27,1],0.7+0.1*-loop[1:27,2]),
+                 matrix(c(NA,NA, -0.03,1.35, -0.03,0.7, # Stempel
+                          NA,NA, 0.03,1.35, 0.03,0.7,
+                          NA,NA, -0.005,-0.05, -0.005,-0.5, # Nadel
+                          0.005,-0.4, 0.005,-0.05, NA,NA),ncol=2,byrow=TRUE))
+Spritze <- syringe
+Spritz <- syring
+# plot(syringe,type="l",col="darkred");polygon(syringe,col="red")
+capsule <- rbind(matrix(c(0,1, -1.9,1),ncol=2,byrow=TRUE), # transparent
+                 cbind(-1.9-1.8*loop[1:18,1],2*loop[1:18,2]),
+                 matrix(c(-1.9,-1, 0,-1, -1.9,-1),ncol=2,byrow=TRUE),
+                 cbind(-1.9-1.8*loop[18:1,1],2*loop[18:1,2]),
+                 matrix(c(-1.9,1, 0,1),ncol=2,byrow=TRUE),
+                 cbind(0.9*-loop[36:19,1],2*loop[36:19,2]),
+                 cbind(2.3-1.8*loop[19:37,1],2*loop[19:37,2]),
+                 matrix(c(0,1, NA,NA),ncol=2,byrow=TRUE))
+Kapsel <- capsule
+# plot(capsule,type="l",col="darkred",asp=1);polygon(capsule,col="red")
 
 icons <- list(Stern,Nadelbaum,Busch,Mensch,Mann,Frau,Familie,Familie2,Fahrrad,Schwein,
             Dorsch,Kaninchen,Knochen,Vase,Frucht,Ackerschmalwand,Petrischale,Maus,
             Wurm,Weizen,Zebrabärbling,Seestern,Ei,Blume,Fruchtfliege,Muschel,Hefe,
             E.coli,Glühbirne,Moschee=9*mosque,KKW=9*KKW,Haus,Fabrik,Auto=3*car,
             #alphadach,
-            betadach,thetadach,Buch,offenes.Buch,Papier,Glas,Flasche,Herz)
+            betadach,thetadach,Buch,offenes.Buch,Papier,Glas,Flasche,Herz,
+            6*Tropfen,10*Spritze,Kapsel)
 
 iconsD <- c("Stern","Nadelbaum","Busch","Mensch","Mann","Frau","Familie","Familie2","Fahrrad","Schwein",
             "Dorsch","Kaninchen","Knochen","Vase","Frucht","Ackerschmalwand","Petrischale","Maus",
             "Wurm","Weizen","Zebrabärbling","Seestern","Ei","Blume","Fruchtfliege","Muschel","Hefe",
             "E.coli","Glühbirne","Moschee","KKW","Haus","Fabrik","Auto",
             #"alphadach",
-            "betadach","thetadach","Buch","offenes.Buch","Papier","Glas","Flasche","Herz")
+            "betadach","thetadach","Buch","offenes.Buch","Papier","Glas","Flasche","Herz",
+            "Tropfen","Spritze","Kapsel")
 iconsE <- c("star","fir","bush","human","man","woman","family","family2","bike","pig",
                "cod","rabbit","bone","vase","fruit","arabidopsis","dish","mouse",
                "worm","wheat","zebrafish","starfish","egg","flower","drosophila","shell","yeast",
                "germ","bulb","mosque","nuclear.powerplant","house","mill","car",
             #"alphahat",
-            "betahat","thetahat","book","open.book","paper","glas","bottle","heart")
+            "betahat","thetahat","book","open.book","paper","glas","bottle","heart",
+            "drops","syringe","capsule")
 iconsCL <- c("gold","darkgreen","darkgreen","brown","blue", "pink", "darkgreen", "darkgrey", "blue","pink",
              "blue","brown","grey","grey20","pink","darkgreen","gold","gray",
              "grey","gold","black","pink","gold","lightcyan","brown","white","grey",
              "gray","gold","darkgrey","black","grey80","black","darkblue",
              #"black",
-             "black","black","black","black","black","orange","darkgreen","darkred")
+             "black","black","black","black","black","orange","darkgreen","darkred",
+             "darkred","black","black")
 iconsCF <- c("white","green","green","white","lavender","mistyrose","lightgreen","yellow",NA,"mistyrose",
              "lavender","gold","white","lavender","orange","green","white","white",
              "gray95","cornsilk","white","orange","white","magenta","gold","grey","lavender",
              "lightgray","white","white","lightgrey","red","grey","blue",
              #NA,
-             NA,NA,"gold","gold",NA,"yellow","green","red")
+             NA,NA,"gold","gold",NA,"yellow","green","red",
+             "red","red","red")
 iconsCol <- cbind(DE=iconsD,EN=iconsE,lcol=iconsCL,fcol=iconsCF)
 
 ##
