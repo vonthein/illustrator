@@ -408,11 +408,11 @@ capsule <- rbind(matrix(c(0,1, -1.9,1),ncol=2,byrow=TRUE), # transparent
 Kapsel <- capsule
 # plot(capsule,type="l",col="darkred",asp=1);polygon(capsule,col="red")
 
-normal <- rbind(loop[-38,],loop[37:1,],loop[38,])
-concentric.restriction <- rbind(loop[-38,],0.7*loop[37:1,],0.7*loop[38,])
-hemianopsy <- rbind(loop[-38,],loop[19:1,],loop[38,])
-RNFL.defect <- rbind(normal, loop[c(32:37,1:3),]+matrix(c(.1,-.1),9,2,T),
-                     1.2*loop[c(3:1,37:34),]+matrix(c(0.07,-.35),7,2,T))
+normal <- 0.5+rbind(loop[-38,],loop[37:1,],loop[38,])
+concentric.restriction <- 0.5+rbind(loop[-38,],0.7*loop[37:1,],0.7*loop[38,])
+hemianopsy <- 0.5+rbind(loop[-38,],loop[19:1,],loop[38,])
+RNFL.defect <- rbind(normal, loop[c(32:37,1:3),]+matrix(c(0.6,.4),9,2,T),
+                     1.2*loop[c(3:1,37:34),]+matrix(c(0.57,.1),7,2,T),loop[38,])
 #plot(RNFL.defect,type="l",col="darkred",asp=1);polygon(RNFL.defect,col="red")
 
 icons <- list(Stern,Nadelbaum,Busch,Mensch,Mann,Frau,Familie,Familie2,Fahrrad,Schwein,
