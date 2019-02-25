@@ -408,13 +408,21 @@ capsule <- rbind(matrix(c(0,1, -1.9,1),ncol=2,byrow=TRUE), # transparent
 Kapsel <- capsule
 # plot(capsule,type="l",col="darkred",asp=1);polygon(capsule,col="red")
 
+normal <- rbind(loop[-38,],loop[37:1,],loop[38,])
+concentric.restriction <- rbind(loop[-38,],0.7*loop[37:1,],0.7*loop[38,])
+hemianopsy <- rbind(loop[-38,],loop[19:1,],loop[38,])
+RNFL.defect <- rbind(normal, loop[c(32:37,1:3),]+matrix(c(.1,-.1),9,2,T),
+                     1.2*loop[c(3:1,37:34),]+matrix(c(0.07,-.35),7,2,T))
+#plot(RNFL.defect,type="l",col="darkred",asp=1);polygon(RNFL.defect,col="red")
+
 icons <- list(Stern,Nadelbaum,Busch,Mensch,Mann,Frau,Familie,Familie2,Fahrrad,Schwein,
             Dorsch,Kaninchen,Knochen,Vase,Frucht,Ackerschmalwand,Petrischale,Maus,
             Wurm,Weizen,Zebrabärbling,Seestern,Ei,Blume,Fruchtfliege,Muschel,Hefe,
             E.coli,Glühbirne,Moschee=9*mosque,KKW=9*KKW,Haus,Fabrik,Auto=3*car,
             #alphadach,
             betadach,thetadach,Buch,offenes.Buch,Papier,Glas,Flasche,Herz,
-            5*Tropfen,10*Spritze,Kapsel)
+            5*Tropfen,10*Spritze,Kapsel,
+            10*normal,10*RNFL.defect,10*hemianopsy,10*concentric.restriction)
 
 iconsD <- c("Stern","Nadelbaum","Busch","Mensch","Mann","Frau","Familie","Familie2","Fahrrad","Schwein",
             "Dorsch","Kaninchen","Knochen","Vase","Frucht","Ackerschmalwand","Petrischale","Maus",
@@ -422,14 +430,14 @@ iconsD <- c("Stern","Nadelbaum","Busch","Mensch","Mann","Frau","Familie","Famili
             "E.coli","Glühbirne","Moschee","KKW","Haus","Fabrik","Auto",
             #"alphadach",
             "betadach","thetadach","Buch","offenes.Buch","Papier","Glas","Flasche","Herz",
-            "Tropfen","Spritze","Kapsel")
+            "Tropfen","Spritze","Kapsel","normal","RNFL.defect","hemianopsy","concentric.restriction")
 iconsE <- c("star","fir","bush","human","man","woman","family","family2","bike","pig",
                "cod","rabbit","bone","vase","fruit","arabidopsis","dish","mouse",
                "worm","wheat","zebrafish","starfish","egg","flower","drosophila","shell","yeast",
                "germ","bulb","mosque","nuclear.powerplant","house","mill","car",
             #"alphahat",
             "betahat","thetahat","book","open.book","paper","glas","bottle","heart",
-            "drops","syringe","capsule")
+            "drops","syringe","capsule","normal","RNFL.defect","hemianopsy","concentric.restriction")
 names(icons) <- iconsE
 iconsCL <- c("gold","darkgreen","darkgreen","brown","blue", "pink", "darkgreen", "darkgrey", "blue","pink",
              "blue","brown","grey","grey20","pink","darkgreen","gold","gray",
@@ -437,14 +445,14 @@ iconsCL <- c("gold","darkgreen","darkgreen","brown","blue", "pink", "darkgreen",
              "gray","gold","darkgrey","black","grey80","black","darkblue",
              #"black",
              "black","black","black","black","black","orange","darkgreen","darkred",
-             "darkred","black","black")
+             "darkred","black","black","black","black","black","black")
 iconsCF <- c("white","green","green","white","lavender","mistyrose","lightgreen","yellow",NA,"mistyrose",
              "lavender","gold","white","lavender","orange","green","white","white",
              "gray95","cornsilk","white","orange","white","magenta","gold","grey","lavender",
              "lightgray","white","white","lightgrey","red","grey","blue",
              #NA,
              NA,NA,"gold","gold",NA,"yellow","green","red",
-             "red","red","red")
+             "red","red","red","black","darkgrey","darkgrey","darkgrey")
 iconsCol <- cbind(DE=iconsD,EN=iconsE,lcol=iconsCL,fcol=iconsCF)
 
 ##
