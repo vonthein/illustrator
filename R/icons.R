@@ -23,9 +23,9 @@ zebrafish <- matrix(c(
 11.3,1.6, 12,0, 13,1, 13.5, 1.5, 13.5,2.5, 11.5,2, NA,NA, # Brustflosse vorn
 9.9,1.5, 11.4,1.5, NA,NA, # Bauch
 13.5,1.5, 15,2, 24,4, 26,4, 32,1, 33,2, 33.5,3, 33,5, 32,5.5, 31.5,6, 31.5,7,
-33,9, 33,11, 32,12, 31,12, 26,8, 20,8, 14,9, 5,8.5, 3,8, 1,7, 0,6.5, NA,NA, # Schwanz, R?cken
+33,9, 33,11, 32,12, 31,12, 26,8, 20,8, 14,9, 5,8.5, 3,8, 1,7, 0,6.5, NA,NA, # Schwanz, Ruecken
 15,2, 16,1, 18,0, 19,0, 20,1, 22,3, 24,4, NA,NA, # Bauchflosse
-14,9, 17.5,12, 19,12.2, 20,11, 20,8, NA,NA, # Rückenflosse
+14,9, 17.5,12, 19,12.2, 20,11, 20,8, NA,NA, # Rueckenflosse
 0,6.5, 0.7,6.5, 1.7,4.5, 2.8,4, 3.5,3.8, 4.5,4, 5,5, 5,6, 4,7, NA,NA, # Kopfschild
 1.5,6.5, 1.7,6.2, 2.5,5.8, 2.8,6, 3,6.2, 3,6.4, 2.7,6.7, 2,7, 1.8,6.9,
 1.5,6.5, NA,NA, # Augenring
@@ -34,7 +34,7 @@ zebrafish <- matrix(c(
 #5,3, 6,4, 6,5, NA,NA,# 6.5,7.5, 8,3, NA,NA, # Kieme, Streifenbeginn
 6.7,7, 32,8, NA,NA, 7,6, 31,7, NA,NA, 7.5,5, 31,6, NA,NA, 8,4, 32,5, # Streifen
 NA,NA)/2.5,ncol=2,byrow=T)
-Danio.rerio <- zebrafish; # Zebrabärbling <- zebrafish
+Danio.rerio <- zebrafish; Zebrabaerbling <- zebrafish
 #plot(zebrafish,type="l")
 #polygon(zebrafish,col="white")
 #
@@ -44,8 +44,8 @@ drosophila <- matrix(c(2,2.5, 1.5,3, 1.5,4, 2,4.5, 3,4.5, 3.5,4, 3.5,3,
 4,6, 4.5,5, 4.5,4, 4,3, 3,1.5, 2,1, NA,NA, #Kopf
 4.5,5, 5,6, 6,7, 9,8, 13,9, 16,9, 18,8.5, 19,8, 19,7, 18.5,6.5, 19,6,
 18.5,5.5, 17,4.7, 18,4, 18,2, 14,2, 10.5,3, 9,4, 7.5,3, 5.5,3, 5,3.3,
-4.5,4, NA,NA, # Flügel, Brust und Hinterleib
-18.5,6.5, 17,6, 14,5.8, 8,6, NA,NA, 17,4.7, 13,4.5, 8,5, NA,NA, #Fl?gel
+4.5,4, NA,NA, # Fluegel, Brust und Hinterleib
+18.5,6.5, 17,6, 14,5.8, 8,6, NA,NA, 17,4.7, 13,4.5, 8,5, NA,NA, #Fluegel
 6,3, 6,2.2, 4,2.2, 3,1.2, 1.5,0, 3,1, 4.1,2, 6.2,2, 6.2,3, NA,NA,
 7,3, 7.5,0.5, 10.5,0, 7.6,0.6, 7.2,3, NA,NA,
 7.5,3.2, 9.5,2.1, 12,3.5, 13.3,1.3, 17,1, 13.3,1.2, 12,3.4, 9.5,1.9, 7.5,3, NA,NA) # Beine
@@ -267,7 +267,7 @@ cbind(c(w[c(145:360,1:36),1])-1.48,c(w[c(145:360,1:36),2])-3.63),NA,
 cbind(c(w[c(217:360,1:108),1])+1.4,c(w[c(217:360,1:108),2])-2.2),NA,
 cbind(c(w[c(289:360,1:180),1])+0.9,c(w[c(289:360,1:180),2])+0.9),NA)
 flower <- flower+3.67
-Blüte <- flower; Blume <- flower
+Bluete <- flower; Blume <- flower
 #plot(flower,type="l",col="darkblue",lwd=1)
 #polygon(flower,col="yellow")
 #points(wheel[c(51,123,195,267,339),])
@@ -326,7 +326,7 @@ bulb <- matrix(c(3.5,0, 3,0.25, 3.5,0.5, 3,0.75, 3.5,1, 3,1.25, 3.5,1.5, 3,1.75,
                  NA,NA, 1.5,4.5, 0,4.5, NA,NA, 2,7, 0.5,8.5, NA,NA,
                  4,8, 4,10, NA,NA, 6,7, 7.5,8.5, NA,NA, 6.5,4.5, 8,4.5,
                  NA,NA),ncol=2,byrow=TRUE)
-Glühbirne <- bulb
+Gluehbirne <- bulb
 # plot(bulb,type="l",col="orange");polygon(bulb,col="yellow")
 glas <- rbind(cbind(2 + 4 * loop[,1], 1 + loop[,2]), # Fuß
               matrix(c(NA,NA, 2.2,5.03, 2.2,1.3),ncol=2,byrow=TRUE), # Stil
@@ -417,8 +417,8 @@ RNFL.defect <- rbind(normal, loop[c(32:37,1:3),]+matrix(c(0.6,.4),9,2,T),
 
 icons <- list(Stern,Nadelbaum,Busch,Mensch,Mann,Frau,Familie,Familie2,Fahrrad,Schwein,
             Dorsch,Kaninchen,Knochen,Vase,Frucht,Ackerschmalwand,Petrischale,Maus,
-            Wurm,Weizen,Zebrabärbling,Seestern,Ei,Blume,Fruchtfliege,Muschel,Hefe,
-            E.coli,Glühbirne,Moschee=9*mosque,KKW=9*KKW,Haus,Fabrik,Auto=3*car,
+            Wurm,Weizen,Zebrabaerbling,Seestern,Ei,Blume,Fruchtfliege,Muschel,Hefe,
+            E.coli,Gluehbirne,Moschee=9*mosque,KKW=9*KKW,Haus,Fabrik,Auto=3*car,
             #alphadach,
             betadach,thetadach,Buch,offenes.Buch,Papier,Glas,Flasche,Herz,
             5*Tropfen,10*Spritze,Kapsel,
@@ -426,8 +426,8 @@ icons <- list(Stern,Nadelbaum,Busch,Mensch,Mann,Frau,Familie,Familie2,Fahrrad,Sc
 
 iconsD <- c("Stern","Nadelbaum","Busch","Mensch","Mann","Frau","Familie","Familie2","Fahrrad","Schwein",
             "Dorsch","Kaninchen","Knochen","Vase","Frucht","Ackerschmalwand","Petrischale","Maus",
-            "Wurm","Weizen","Zebrabärbling","Seestern","Ei","Blume","Fruchtfliege","Muschel","Hefe",
-            "E.coli","Glühbirne","Moschee","KKW","Haus","Fabrik","Auto",
+            "Wurm","Weizen","Zebrabaerbling","Seestern","Ei","Blume","Fruchtfliege","Muschel","Hefe",
+            "E.coli","Gluehbirne","Moschee","KKW","Haus","Fabrik","Auto",
             #"alphadach",
             "betadach","thetadach","Buch","offenes.Buch","Papier","Glas","Flasche","Herz",
             "Tropfen","Spritze","Kapsel","normal","RNFL.defect","hemianopsy","concentric.restriction")
