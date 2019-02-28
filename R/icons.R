@@ -34,7 +34,7 @@ zebrafish <- matrix(c(
 #5,3, 6,4, 6,5, NA,NA,# 6.5,7.5, 8,3, NA,NA, # Kieme, Streifenbeginn
 6.7,7, 32,8, NA,NA, 7,6, 31,7, NA,NA, 7.5,5, 31,6, NA,NA, 8,4, 32,5, # Streifen
 NA,NA)/2.5,ncol=2,byrow=T)
-Danio.rerio <- zebrafish; Zebrabärbling <- zebrafish
+Danio.rerio <- zebrafish; # Zebrabärbling <- zebrafish
 #plot(zebrafish,type="l")
 #polygon(zebrafish,col="white")
 #
