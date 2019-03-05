@@ -51,6 +51,7 @@ blaugruen     <- rgb(0,115,115,240,,255)
 #' @param df degrees of freedom of t-distribution(s)
 #' @param kern kernel of density trace for dtr or violin
 #' @param sdsk smoothness parameter of density trace for dtr or violin
+#' @param cex.axis as usual
 #' @param ... parameters passed on to function plot()
 #'
 #' @return Prints tuning parameters binz and space and returns histograms of y for values of x. Plots the specified plot.
@@ -184,7 +185,7 @@ battleship <- function(y, cens=0, x=1, dis="normal", xprop=T, space=1, his=NA, b
                        quant=c(0.025,0.25,0.5,0.75,0.975),
                        cline=FALSE, clc = "white", whisker=0, confluence="Tufte",
                        trials=0, start=list(m), mix=NA, genmix=F, df=4, kern="gaussian",
-                       sdsk=sqrt(var(y))/log(length(y)),...){
+                       sdsk=sqrt(var(y))/log(length(y)), cex.axis = 1, ...){
  # y       vector containing dependent variable
  # cens    vector of length(y), is > 0 where y is right-censored,
  #          is < 0 where left-censored, 0 elsewhere
@@ -244,6 +245,7 @@ battleship <- function(y, cens=0, x=1, dis="normal", xprop=T, space=1, his=NA, b
  # df      degrees of freedom of t-distribution(s)
  # kern    kernel of density trace for dtr or violin
  # sdsk    smoothness parameter of density trace for dtr or violin
+ # cex.axis as usual
 
  n <- length(y)                   # total sample size
  xl <- unique(x)                  # group labels
@@ -983,7 +985,7 @@ battleship <- function(y, cens=0, x=1, dis="normal", xprop=T, space=1, his=NA, b
  # draw it all
  par(xpd=NA,xaxt="n")
  plot(rr,ry,xlab=deparse(substitute(x)),ylab=deparse(substitute(y)),pch=" ",...)
- text(xs,rep(ry[1]-0.11*(ry[2]-ry[1]),m),xl)
+ text(xs,rep(ry[1]-0.11*(ry[2]-ry[1]),m),xl, cex = cex.axis)
  if(fill|(sum(abs(cens))>0)) {fil <- NA} else {fil <- 0}
  if(is.vector(fillcol)) {
   if(length(fillcol)==1) {filcol <- rep(fillcol,n)}
