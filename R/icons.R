@@ -369,10 +369,17 @@ open.book <- matrix(c(6,1, 6,11, NA,NA,
                       NA,NA),ncol=2,byrow=TRUE)
 offenes.Buch <- open.book
 # plot(open.book,type="l",col="orange");polygon(open.book,col="yellow")
-heart <- matrix(c(0,0, 0.2,0.6, 0.5,1.2, 0.8,1.7, 1.1,2.6, 1.2,3.4, 1.2,4.6, 1,5.6,
-                  0.7,6, 0.4,6, 0.2,5.7, 0,5, -.2,5.7, -.4,6, -.7,6, -1,5.6,
-                  -1.2,4.6, -1.2,3.4, -1.1,2.6, -.8,1.7, -.5,1.2, -.2,.6, 0,0, NA,NA),ncol=2,byrow=TRUE)
-heart <- cbind(2*heart[,1],heart[,2])
+deg <- (1:360) * pi / 180
+heart <- rbind(cbind(16 * (sin(deg))^3,
+                     13 * cos(deg) -
+                      5 * cos(2 * deg) -
+                      2 * cos(3 * deg) -
+                          cos(4 * deg)),
+               c(NA, NA))
+#heart <- matrix(c(0,0, 0.2,0.6, 0.5,1.2, 0.8,1.7, 1.1,2.6, 1.2,3.4, 1.2,4.6, 1,5.6,
+#                  0.7,6, 0.4,6, 0.2,5.7, 0,5, -.2,5.7, -.4,6, -.7,6, -1,5.6,
+#                  -1.2,4.6, -1.2,3.4, -1.1,2.6, -.8,1.7, -.5,1.2, -.2,.6, 0,0, NA,NA),ncol=2,byrow=TRUE)
+#heart <- cbind(2*heart[,1],heart[,2])
 Herz <- heart
 # plot(heart,type="l",col="darkred");polygon(heart,col="red")
 drops <- rbind(loop[6:31,], 0:1, loop[6,], NA)
@@ -420,7 +427,7 @@ icons <- list(Stern,Nadelbaum,Busch,Mensch,Mann,Frau,Familie,Familie2,Fahrrad,Sc
             Wurm,Weizen,Zebrabaerbling,Seestern,Ei,Blume,Fruchtfliege,Muschel,Hefe,
             E.coli,Gluehbirne,Moschee=9*mosque,KKW=9*KKW,Haus,Fabrik,Auto=3*car,
             #alphadach,
-            betadach,thetadach,Buch,offenes.Buch,Papier,Glas,Flasche,Herz,
+            betadach,thetadach,Buch,offenes.Buch,Papier,Glas,Flasche,5+Herz/3,
             5*Tropfen,10*Spritze,Kapsel,
             10*normal,10*RNFL.defect,10*hemianopsy,10*concentric.restriction)
 
